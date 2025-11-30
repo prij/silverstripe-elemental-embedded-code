@@ -26,11 +26,12 @@
         }
     ],
     "require": {
-        "dnadesign/silverstripe-elemental": "^5",
-        "silverstripe/framework": "^5"
+        "php": "^8.1",
+        "dnadesign/silverstripe-elemental": "^6",
+        "silverstripe/framework": "^6"
     },
     "require-dev": {
-        "silverstripe/recipe-testing": "^3"
+        "silverstripe/recipe-testing": "^4"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -41,11 +42,14 @@
         }
     },
     "config": {
-        "process-timeout": 600
+        "process-timeout": 600,
+        "allow-plugins": {
+            "silverstripe/vendor-plugin": true
+        }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.x-dev"
+            "dev-master": "4.x-dev"
         }
     },
     "scripts": {

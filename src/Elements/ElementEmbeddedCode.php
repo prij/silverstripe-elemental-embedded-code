@@ -6,46 +6,29 @@ use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\ORM\FieldType\DBField;
+use SilverStripe\ORM\FieldType\DBHTMLText;
 
 /**
- * Class ElementEmbededCode.
+ * Class ElementEmbeddedCode
  */
 class ElementEmbeddedCode extends BaseElement
 {
-    /**
-     * @var string
-     */
-    private static $icon = 'font-icon-code';
+    private static string $icon = 'font-icon-code';
 
-    /**
-     * @var string
-     */
-    private static $singular_name = 'Embedded Code Element';
+    private static string $singular_name = 'Embedded Code Element';
 
-    /**
-     * @var string
-     */
-    private static $plural_name = 'Embedded Code Elements';
+    private static string $plural_name = 'Embedded Code Elements';
 
-    private static $description = 'Embed code like iFrames or Javascript on a page.';
+    private static string $description = 'Embed code like iFrames or Javascript on a page.';
 
-    /**
-     * @var array
-     */
-    private static $db = [
+    private static string $table_name = 'ElementEmbeddedCode';
+
+    private static array $db = [
         'Content' => 'HTMLText',
         'Code' => 'HTMLText',
     ];
 
-    /**
-     * @var string
-     */
-    private static $table_name = 'ElementEmbeddedCode';
-
-    /**
-     * @return FieldList
-     */
-    public function getCMSFields()
+    public function getCMSFields(): FieldList
     {
         $fields = parent::getCMSFields();
         $fields->replaceField(
@@ -57,26 +40,17 @@ class ElementEmbeddedCode extends BaseElement
         return $fields;
     }
 
-    /**
-     * @return string
-     */
-    public function getType()
+    public function getType(): string
     {
-        return _t(__CLASS__.'.BlockType', 'Embedded Code');
+        return _t(__CLASS__ . '.BlockType', 'Embedded Code');
     }
 
-    /**
-     * @return DBHTMLText
-     */
-    public function getSummary()
+    public function getSummary(): DBHTMLText
     {
         return DBField::create_field('HTMLText', $this->Code)->Summary(20);
     }
 
-    /**
-     * @return array
-     */
-    protected function provideBlockSchema()
+    protected function provideBlockSchema(): array
     {
         $blockSchema = parent::provideBlockSchema();
         $blockSchema['content'] = $this->getSummary();
